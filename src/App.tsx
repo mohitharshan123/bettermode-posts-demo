@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import "./App.css";
 import { WrappedApolloProvider } from "./Transport";
 import apolloClient from "./apolloClient";
@@ -8,9 +7,7 @@ const App = () => {
   return (
     <>
       <WrappedApolloProvider makeClient={apolloClient}>
-        <Suspense>
-          <Router />
-        </Suspense>
+        <Router />
       </WrappedApolloProvider>
     </>
   );
