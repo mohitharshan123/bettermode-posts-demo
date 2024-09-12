@@ -39,31 +39,6 @@ const Header: React.FC = () => {
                   alt="Avatar"
                 />
               </button>
-
-              <div
-                className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="hs-dropdown-account"
-              >
-                <div className="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-neutral-700">
-                  <p className="text-sm text-gray-500 dark:text-neutral-500">
-                    Signed in as
-                  </p>
-                  <p className="text-sm font-medium text-gray-800 dark:text-neutral-200">
-                    {email}
-                  </p>
-                </div>
-                <div className="p-1.5 space-y-0.5" onClick={handleLogout}>
-                  <a
-                    className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300"
-                    href="#"
-                  >
-                    <CiLogout />
-                    Logout
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

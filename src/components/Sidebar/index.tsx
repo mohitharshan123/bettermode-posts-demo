@@ -1,20 +1,26 @@
 import { useNavigate } from "react-router-dom";
-
 import { GoHome } from "react-icons/go";
 import { FaChevronRight } from "react-icons/fa";
-
+import { CiLogout } from "react-icons/ci"; // Import the logout icon
 import Logo from "../../assets/logo.svg";
-import { ROUTES } from "../../constants";
+import { JWT_TOKEN_LS, ROUTES } from "../../constants";
+import Cookies from "universal-cookie";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove(JWT_TOKEN_LS);
+    navigate(ROUTES.authentication);
+  };
 
   return (
     <>
       <div className="-mt-px">
         <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-neutral-800 dark:border-neutral-700">
           <div className="flex items-center py-2">
-            <ol className="ms-3 flex items-center whitespace-nowrap">
+            <ol className="w-full ms-3 flex items-center whitespace-nowrap">
               <li className="mr-1 flex items-center text-sm text-gray-800 dark:text-neutral-400">
                 Dashboard
                 <FaChevronRight className="ml-2" />
@@ -25,6 +31,13 @@ const Sidebar = () => {
                 onClick={() => navigate(ROUTES.posts)}
               >
                 Posts
+              </li>
+              <li
+                className="ml-auto cursor-pointer hover:text-gray-500 text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
+                aria-current="page"
+                onClick={handleLogout}
+              >
+                Logout
               </li>
             </ol>
           </div>
@@ -55,15 +68,15 @@ const Sidebar = () => {
             </a>
           </div>
 
-          <div className="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+          <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
             <nav
-              className="hs-accordion-group p-3 w-full flex flex-col flex-wrap"
+              className="hs-accordion-group p-3 w-full flex flex-col flex-wrap flex-grow"
               data-hs-accordion-always-open
             >
-              <ul className="flex flex-col space-y-1">
+              <ul className="flex flex-col space-y-1 flex-grow">
                 <li>
                   <a
-                    className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-700 dark:bg-neutral-700 dark:text-white"
+                    className="cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-700 dark:bg-neutral-700 dark:text-white"
                     onClick={() => navigate(ROUTES.posts)}
                   >
                     <GoHome size={20} />
@@ -72,6 +85,16 @@ const Sidebar = () => {
                 </li>
               </ul>
             </nav>
+
+            <div className="p-3">
+              <button
+                className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg w-full hover:bg-gray-100 focus:outline-none dark:text-white dark:hover:bg-neutral-700"
+                onClick={handleLogout}
+              >
+                <CiLogout size={20} />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
