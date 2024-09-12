@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 import { GoHome } from "react-icons/go";
 import { FaChevronRight } from "react-icons/fa";
-import { GoSidebarCollapse } from "react-icons/go";
 
 import Logo from "../../assets/logo.svg";
 import { ROUTES } from "../../constants";
@@ -15,28 +14,15 @@ const Sidebar = () => {
       <div className="-mt-px">
         <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-neutral-800 dark:border-neutral-700">
           <div className="flex items-center py-2">
-            <button
-              type="button"
-              className="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-              aria-haspopup="dialog"
-              aria-expanded="false"
-              aria-controls="hs-application-sidebar"
-              aria-label="Toggle navigation"
-              data-hs-overlay="#hs-application-sidebar"
-            >
-              <span className="sr-only">Toggle Navigation</span>
-              <GoSidebarCollapse />
-            </button>
-
             <ol className="ms-3 flex items-center whitespace-nowrap">
               <li className="mr-1 flex items-center text-sm text-gray-800 dark:text-neutral-400">
                 Dashboard
                 <FaChevronRight className="ml-2" />
               </li>
               <li
-                className="text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
+                className="cursor-pointer hover:text-gray-500 text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
                 aria-current="page"
-                onClick={() => navigate(ROUTES.posts_root)}
+                onClick={() => navigate(ROUTES.posts)}
               >
                 Posts
               </li>
@@ -78,7 +64,7 @@ const Sidebar = () => {
                 <li>
                   <a
                     className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-700 dark:bg-neutral-700 dark:text-white"
-                    onClick={() => navigate(ROUTES.posts_root)}
+                    onClick={() => navigate(ROUTES.posts)}
                   >
                     <GoHome size={20} />
                     Posts

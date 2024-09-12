@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import App from "./App";
 import Html from "./Html";
 import { InjectionContextProvider } from "./Transport";

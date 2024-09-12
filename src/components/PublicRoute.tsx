@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { JWT_TOKEN, JWT_TOKEN_LS, ROUTES } from "../constants";
+import Cookies from "universal-cookie";
 
 /**
  * Props for the PublicRoute component.
@@ -28,7 +29,8 @@ type PublicRouteProps = {
  */
 const PublicRoute: React.FC<PublicRouteProps> = ({ component: Component }) => {
   const location = useLocation();
-  const isAuthenticated = !!localStorage.getItem(JWT_TOKEN_LS);
+  const cookies = new Cookies();
+  const isAuthenticated = !!cookies.get(JWT_TOKEN_LS);
 
   // Redirect authenticated users if the route is restricted
   if (isAuthenticated) {

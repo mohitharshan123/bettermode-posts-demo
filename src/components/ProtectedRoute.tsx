@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { JWT_TOKEN_LS, ROUTES } from "../constants";
+import Cookies from "universal-cookie";
 
 /**
  * Props for the ProtectedRoute component.
@@ -30,9 +31,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   component: Component,
 }) => {
   const location = useLocation();
+  const cookies = new Cookies();
 
-  // Check if the user is authenticated based on the presence of an API key
-  const isAuthenticated = !!localStorage.getItem(JWT_TOKEN_LS);
+  // Check if the user is authenticated based on the presence of JWT token.
+  const isAuthenticated = !!cookies.get(JWT_TOKEN_LS);
 
   return isAuthenticated ? (
     // Render the component if authenticated

@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useRequestTokenCode } from "../../hooks/graphql/useAuthentication";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useUserStore from "../../stores/user";
+import Cookies from "universal-cookie";
+import { useState } from "react";
 
 type LoginFormValues = {
   email: string;
@@ -16,7 +18,7 @@ type LoginFormValues = {
 const Login = () => {
   const navigate = useNavigate();
   const [requestTokenCode, { error: responseError }] = useRequestTokenCode();
-
+  const [isTokenRequested, setIsTokenRequested] = useState(false)
   const { email, setEmail } = useUserStore();
 
   const {
@@ -31,11 +33,13 @@ const Login = () => {
     });
     if (data?.requestGlobalTokenCode?.status === "succeeded") {
       setEmail(email);
+      setIsTokenRequested(true);
     }
   };
 
   const handleOtpCompleted = async () => {
-    localStorage.setItem(JWT_TOKEN_LS, JWT_TOKEN);
+    const cookies = new Cookies();
+    cookies.set(JWT_TOKEN_LS, JWT_TOKEN, { path: "/" });
     navigate("/posts");
   };
 
@@ -61,7 +65,7 @@ const Login = () => {
               </a>
             </p>
           </div>
-          {!!email ? (
+          {!!email && isTokenRequested ? (
             <div className="w-full flex flex-row mt-10 justify-center">
               <Otp onOtpComplete={handleOtpCompleted} />
             </div>
