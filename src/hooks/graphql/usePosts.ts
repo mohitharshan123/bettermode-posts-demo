@@ -2,7 +2,6 @@ import {
   MutationOptions,
   QueryHookOptions,
   useMutation,
-  useQuery,
   useSuspenseQuery,
 } from "@apollo/client/index.js";
 import { FETCH_POSTS_QUERY, GET_POST_QUERY } from "./queries";

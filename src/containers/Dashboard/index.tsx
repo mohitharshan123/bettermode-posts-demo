@@ -7,11 +7,11 @@ const Dashboard = () => (
   <div className="flex flex-col min-h-screen">
     <Header />
     <Sidebar />
-    <div className="lg:ml-[270px] ">
-      <Suspense>
+    <Suspense>
+      <div className="lg:ml-[270px] ">
         <Outlet />
-      </Suspense>
-    </div>
+      </div>
+    </Suspense>
   </div>
 );
 
