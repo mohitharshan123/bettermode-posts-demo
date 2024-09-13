@@ -44,7 +44,7 @@ const Otp: React.FC<{ onOtpComplete: (otp: string) => void }> = ({
             autoFocus={index === 0}
             key={index}
             ref={inputRefs[index]}
-            className="font-bold text-2xl h-10 block w-[38px] text-center border-gray-200 rounded-md focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            className="font-bold text-2xl h-10 block w-[38px] text-center border-gray-200 rounded-md focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 text-gray-500 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
             type="text"
             placeholder="○"
             maxLength={1}

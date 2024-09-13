@@ -62,7 +62,7 @@ const Login = () => {
               </a>
             </p>
           </div>
-          {!!email && isTokenRequested ? (
+          {isTokenRequested ? (
             <div className="w-full flex flex-row mt-10 justify-center">
               <Otp onOtpComplete={handleOtpCompleted} />
             </div>
@@ -107,6 +107,7 @@ const Login = () => {
                             message: "Invalid email address",
                           },
                         })}
+                        autoFocus
                       />
                     </div>
                     {errors.email?.type == "required" && (
@@ -139,7 +140,7 @@ const Login = () => {
                     <div className="ms-3">
                       <label
                         htmlFor="remember-me"
-                        className="text-sm dark:text-white"
+                        className="text-sm dark:text-white text-gray-700"
                       >
                         Remember me
                       </label>

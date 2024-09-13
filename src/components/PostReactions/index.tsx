@@ -74,7 +74,6 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
           >
             {post.reactions?.[0]?.reacted ? reactionEmoji : "Like"}
           </button>
-
           <div className="reaction-container">
             <ReactionCounter
               showOthersAlways={false}
