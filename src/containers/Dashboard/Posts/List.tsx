@@ -1,5 +1,5 @@
 import { useTransition } from "react";
-import { useFetchPosts } from "../../../hooks/graphql/posts/usePosts";
+import { useFetchPosts } from "../../../graphql/posts/usePosts";
 import { Post } from "../../../types/posts";
 import PostCard from "./Card";
 import Skeleton from "./Card/Skeleton";

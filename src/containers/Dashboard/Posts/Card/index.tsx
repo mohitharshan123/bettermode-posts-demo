@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import { Post } from "../../../../types/posts";
 import PostReactions from "../../../../components/PostReactions";
+import { getAllowedReactions } from "../../../../components/PostReactions/utils";
 
 const PostCard: React.FC<{ post: Post }> = ({ post }) => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="flex flex-col bg-white border border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
       <div className="flex items-center mb-4">
@@ -28,9 +29,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
       </div>
       <div>
         <h3
-          onClick={() =>
-            navigate(post.id)
-          }
+          onClick={() => navigate(post.id)}
           className="cursor-pointer text-xl font-semibold text-gray-800 dark:text-white mb-2"
         >
           {post.title}
@@ -39,7 +38,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
           {post.description}
         </p>
       </div>
-      <PostReactions {...{ post }} />
+      {getAllowedReactions(post).length && <PostReactions {...{ post }} />}
     </div>
   );
 };

@@ -10,8 +10,8 @@ export const Router = () => {
     <Routes>
       <Route path="/authentication" Component={Login} />
       <Route path="/" Component={Dashboard}>
-        <Route path="posts" Component={Posts} /> {/* Renders Posts at "/" */}
-        <Route path="posts/:postId" Component={PostDetail} />{" "}
+        <Route path="posts" Component={Posts} />
+        <Route path="posts/:postId" Component={PostDetail} />
       </Route>
     </Routes>
   );

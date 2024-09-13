@@ -5,9 +5,8 @@ import Logo from "../../assets/logo.svg";
 import GoogleButton from "../../assets/google.svg";
 import { JWT_TOKEN, JWT_TOKEN_LS } from "../../constants";
 import { useNavigate } from "react-router-dom";
-import { useRequestTokenCode } from "../../hooks/graphql/user/useAuthentication";
+import { useRequestTokenCode } from "../../graphql/user/useAuthentication";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import useUserStore from "../../stores/user";
 import Cookies from "universal-cookie";
 import { useState } from "react";
 
@@ -19,7 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [requestTokenCode, { error: responseError }] = useRequestTokenCode();
   const [isTokenRequested, setIsTokenRequested] = useState(false);
-  const { email, setEmail } = useUserStore();
 
   const {
     register,
@@ -32,7 +30,6 @@ const Login = () => {
       variables: { input: { email } },
     });
     if (data?.requestGlobalTokenCode?.status === "succeeded") {
-      setEmail(email);
       setIsTokenRequested(true);
     }
   };

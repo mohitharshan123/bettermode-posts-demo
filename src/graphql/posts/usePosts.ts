@@ -7,7 +7,8 @@ import {
 import { FETCH_POSTS_QUERY, GET_POST_QUERY } from "./queries";
 import { ADD_REACTION_MUTATION, REMOVE_REACTION_MUTATION } from "./mutations";
 import { CacheUpdater } from "./cacheUpdator";
-import { ITEMS_PER_PAGE } from "../../../constants";
+import { ITEMS_PER_PAGE } from "../../constants";
+import { useFetchAuthUser } from "../user/useAuthUser";
 
 export const useFetchPosts = (options?: SuspenseQueryHookOptions): any =>
   useSuspenseQuery(FETCH_POSTS_QUERY, {
@@ -31,28 +32,39 @@ export const useGetPost = (
     ...options,
   });
 
-export const useReaction = (options?: MutationOptions) =>
-  useMutation(ADD_REACTION_MUTATION, {
+export const useReaction = (options?: MutationOptions) => {
+  const { data: user } = useFetchAuthUser();
+
+  return useMutation(ADD_REACTION_MUTATION, {
     update(cache, { data }, reaction) {
-      CacheUpdater.addReactionToCache(cache, data, reaction);
+      CacheUpdater.addReactionToCache({
+        cache,
+        data,
+        reaction,
+        user: user.authMember,
+      });
     },
     onError(error) {
       console.error("Error updating reaction:", error);
     },
     ...options,
   });
+};
 
-export const useRemoveReaction = (options?: MutationOptions) =>
-  useMutation(REMOVE_REACTION_MUTATION, {
-    refetchQueries: [
-      {
-        query: FETCH_POSTS_QUERY,
-        variables: {
-          limit: ITEMS_PER_PAGE,
-          orderByString: "publishedAt",
-          reverse: true,
-        },
-      },
-    ],
+export const useRemoveReaction = (options?: MutationOptions) => {
+  const { data: user } = useFetchAuthUser();
+
+  return useMutation(REMOVE_REACTION_MUTATION, {
+    update(cache, _, reaction) {
+      CacheUpdater.removeReactionFromCache({
+        cache,
+        reaction,
+        user: user.authMember,
+      });
+    },
+    onError(error) {
+      console.error("Error updating reaction:", error);
+    },
     ...options,
   });
+};

@@ -60,6 +60,13 @@ type PostMappingField = {
   value: string;
 };
 
+type Reaction = {
+  reacted: boolean;
+  reaction: string;
+  count: number;
+  participants: { nodes: Array<{ participant: Member }> };
+};
+
 export type Post = {
   __typename: "Post";
   id: string;
@@ -80,7 +87,7 @@ export type Post = {
   status: string;
   spaceId: string;
   imageIds: string[];
-  reactions: Array<{ reacted: boolean; reaction: string }>;
+  reactions: Array<Reaction>;
   pinnedInto: any[];
   repliesCount: number;
   totalRepliesCount: number;

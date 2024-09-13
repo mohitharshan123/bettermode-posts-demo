@@ -6,10 +6,15 @@ import { Post, ReactionType } from "../../types/posts";
 import { getAllowedReactions } from "./utils";
 import useReactions from "./useReactions";
 import useClickOutside from "../../hooks/useClickOutside";
+import { useFetchAuthUser } from "../../graphql/user/useAuthUser";
+import { ReactionCounter } from "@charkour/react-reactions";
+import { REACTION_TYPE_TO_EMOJI } from "../../constants";
 
 const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const { data } = useFetchAuthUser();
 
   const {
     handleReaction,
@@ -64,6 +69,17 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
           >
             {post.reactions?.[0]?.reacted ? reactionEmoji : "Like"}
           </button>
+
+          <div className="reaction-container">
+            <ReactionCounter
+              user={data.authMember?.name}
+              reactions={post.reactions.map(({ reaction, participants }) => ({
+                node: <div>{REACTION_TYPE_TO_EMOJI[reaction]}</div>,
+                label: "Liked by",
+                by: participants?.nodes[0]?.participant.name,
+              }))}
+            />
+          </div>
         </>
       )}
     </div>

@@ -3,10 +3,7 @@ import {
   POST_TYPE_ALLOWED_REACTIONS_MAP,
   REACTION_TYPE_TO_EMOJI,
 } from "../../constants";
-import {
-  useReaction,
-  useRemoveReaction,
-} from "../../hooks/graphql/posts/usePosts";
+import { useReaction, useRemoveReaction } from "../../graphql/posts/usePosts";
 import { Post, ReactionType } from "../../types/posts";
 
 /**
@@ -40,7 +37,10 @@ const useReactions = ({
     ) ?? false;
 
   const handleReaction = (reaction: string) => {
-    if (post.reactions?.[0]?.reacted && isUpvoteType) {
+    if (
+      (post.reactions?.[0]?.reacted && isUpvoteType) ||
+      post.reactions?.[0]?.reaction == reaction
+    ) {
       removeReaction({
         variables: {
           postId: post.id,
