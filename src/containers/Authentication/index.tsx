@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import Otp from "./Otp";
 import Logo from "../../assets/logo.svg";
 import GoogleButton from "../../assets/google.svg";
-import { JWT_TOKEN, JWT_TOKEN_LS, ROUTES } from "../../constants";
+import { JWT_TOKEN, JWT_TOKEN_LS } from "../../constants";
 import { useNavigate } from "react-router-dom";
-import { useRequestTokenCode } from "../../hooks/graphql/useAuthentication";
+import { useRequestTokenCode } from "../../hooks/graphql/user/useAuthentication";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useUserStore from "../../stores/user";
 import Cookies from "universal-cookie";
@@ -18,7 +18,7 @@ type LoginFormValues = {
 const Login = () => {
   const navigate = useNavigate();
   const [requestTokenCode, { error: responseError }] = useRequestTokenCode();
-  const [isTokenRequested, setIsTokenRequested] = useState(false)
+  const [isTokenRequested, setIsTokenRequested] = useState(false);
   const { email, setEmail } = useUserStore();
 
   const {

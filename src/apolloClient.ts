@@ -31,5 +31,24 @@ export default () =>
   new ApolloClient({
     ssrMode: true,
     link,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            posts: {
+              keyArgs: false,
+              merge(existing = { nodes: [] }, incoming) {
+                return {
+                  ...incoming,
+                  nodes: [...existing.nodes, ...incoming.nodes],
+                };
+              },
+            },
+          },
+        },
+        Post: {
+          keyFields: ["id"],
+        },
+      },
+    }),
   });

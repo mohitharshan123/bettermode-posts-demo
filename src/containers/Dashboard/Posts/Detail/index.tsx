@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetPost } from "../../../../hooks/graphql/usePosts";
+import { useGetPost } from "../../../../hooks/graphql/posts/usePosts";
 import { cleanHtmlContent } from "../utils";
 
 const PostDetail = () => {

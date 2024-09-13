@@ -5,6 +5,7 @@ import {
   createInjectionTransformStream,
   pipeReaderToResponse,
 } from "@apollo/client-react-streaming/stream-utils";
+import cookieParser from "cookie-parser";
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
@@ -13,6 +14,8 @@ const base = process.env.BASE || "/";
 
 // Create http server
 const app = express();
+
+app.use(cookieParser());
 
 // Add Vite or respective production middlewares
 let vite;
@@ -44,10 +47,26 @@ if (!isProduction) {
   }
 }
 
-console.log({
-  bootstrapModules,
-  assets,
-});
+// Middleware to handle redirection based on authentication
+const redirectMiddleware = (req, res, next) => {
+  const authToken = req.cookies["JWT_TOKEN"];
+
+  if (req.originalUrl === "/" && authToken) {
+    return res.redirect("/posts");
+  }
+
+  if (authToken && req.originalUrl === "/authentication") {
+    return res.redirect("/posts");
+  }
+
+  if (!authToken && req.originalUrl !== "/authentication") {
+    return res.redirect("/authentication");
+  }
+
+  next();
+};
+
+app.use(redirectMiddleware);
 
 app.use("*", async (req, res) => {
   // The new wiring is a bit more involved.

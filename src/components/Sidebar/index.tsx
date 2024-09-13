@@ -12,7 +12,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     const cookies = new Cookies();
     cookies.remove(JWT_TOKEN_LS);
-    navigate(ROUTES.authentication);
+    navigate(ROUTES.authentication.index);
   };
 
   return (
@@ -28,7 +28,7 @@ const Sidebar = () => {
               <li
                 className="cursor-pointer hover:text-gray-500 text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
                 aria-current="page"
-                onClick={() => navigate(ROUTES.posts)}
+                onClick={() => navigate(ROUTES.posts.index)}
               >
                 Posts
               </li>
@@ -47,12 +47,11 @@ const Sidebar = () => {
         id="hs-application-sidebar"
         className="hs-overlay [--auto-close:lg]
   hs-overlay-open:translate-x-0
-  -translate-x-full transition-all duration-300 transform
   w-[260px] h-full
   hidden
   fixed inset-y-0 start-0 z-[60]
   bg-white border-e border-gray-200
-  lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+  lg:block lg:end-auto lg:bottom-0
   dark:bg-neutral-800 dark:border-neutral-700"
         role="dialog"
         tabIndex={-1}
@@ -77,7 +76,7 @@ const Sidebar = () => {
                 <li>
                   <a
                     className="cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-700 dark:bg-neutral-700 dark:text-white"
-                    onClick={() => navigate(ROUTES.posts)}
+                    onClick={() => navigate(ROUTES.posts.index)}
                   >
                     <GoHome size={20} />
                     Posts

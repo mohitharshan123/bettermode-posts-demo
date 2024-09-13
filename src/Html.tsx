@@ -1,12 +1,25 @@
-export default function Html({ isProduction, assets, children }) {
+import React from "react";
+
+type HtmlProps = {
+  isProduction: boolean;
+  assets?: string[];
+  children?: React.ReactNode;
+};
+
+const Html: React.FC<HtmlProps> = ({ isProduction, assets, children }) => {
   return (
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vite + React</title>
-        {assets?.map((asset) => (
-          <link rel="stylesheet" crossorigin href={asset}></link>
+        {assets?.map((asset: string) => (
+          <link
+            key={asset}
+            rel="stylesheet"
+            crossOrigin="anonymous"
+            href={asset}
+          />
         ))}
       </head>
       <body>
@@ -48,4 +61,6 @@ export default function Html({ isProduction, assets, children }) {
       </body>
     </html>
   );
-}
+};
+
+export default Html;
