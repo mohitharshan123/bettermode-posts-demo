@@ -9,15 +9,15 @@ const Header: React.FC<{ user: Member }> = ({ user }) => (
 
         <div className="flex flex-row items-center justify-end gap-3">
           <button
+            data-testid="notifications-button"
             type="button"
             className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
           >
             <MdOutlineNotifications size={22} />
           </button>
 
-          <div className="hs-dropdown [--placement:bottom-right] relative inline-flex">
+          <div className="relative inline-flex">
             <button
-              id="hs-dropdown-account"
               type="button"
               className="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
               aria-haspopup="menu"

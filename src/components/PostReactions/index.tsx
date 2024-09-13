@@ -1,16 +1,19 @@
+import React, { useRef } from "react";
+
+import clsx from "clsx";
+
+import { FaAngleUp } from "react-icons/fa";
+import { Post, ReactionType } from "types/posts";
+import useClickOutside from "hooks/useClickOutside";
+import { REACTION_TYPE_TO_EMOJI } from "constants/index";
+import { useFetchAuthUser } from "graphql/user/useAuthUser";
 import {
   ReactionBarSelector,
   ReactionCounter,
 } from "@charkour/react-reactions";
-import clsx from "clsx";
-import { useRef } from "react";
-import { FaAngleUp } from "react-icons/fa";
-import { Post, ReactionType } from "types/posts";
-import { getAllowedReactions } from "./utils";
+
 import useReactions from "./useReactions";
-import useClickOutside from "hooks/useClickOutside";
-import { useFetchAuthUser } from "graphql/user/useAuthUser";
-import { REACTION_TYPE_TO_EMOJI } from "constants/index";
+import { getAllowedReactions } from "./utils";
 
 const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
   const popupRef = useRef<HTMLDivElement>(null);
@@ -77,7 +80,9 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
               showOthersAlways={false}
               user={user.authMember?.name}
               reactions={post?.reactions?.map(({ reaction, participants }) => ({
-                node: <div>{REACTION_TYPE_TO_EMOJI[reaction]}</div>,
+                node: (
+                  <div>{REACTION_TYPE_TO_EMOJI[reaction as ReactionType]}</div>
+                ),
                 label: "Liked by",
                 by: participants?.nodes[0]?.participant.name,
               }))}

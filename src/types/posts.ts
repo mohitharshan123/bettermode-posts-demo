@@ -22,30 +22,11 @@ type Image = {
 };
 
 type Member = {
-  displayName: string | null;
   name: string;
   id: string;
-  locale: string;
-  profilePictureId: string;
-  bannerId: string | null;
-  status: string;
-  username: string;
   email: string;
-  emailStatus: string;
-  newEmail: string | null;
-  tagline: string | null;
-  lastSeenAt: string;
-  createdAt: string;
-  updatedAt: string;
-  relativeUrl: string;
-  url: string;
-  externalId: string | null;
-  roleId: string;
-  flagged: boolean;
-  teammate: boolean;
-  staffReasons: string[];
-  profilePicture: Image;
-  badges: any[];
+  url?: string;
+  profilePicture?: Image;
 };
 
 type CustomField = {
@@ -102,74 +83,12 @@ export type Post = {
   primaryReactionType: string;
   lastActivityAt: string;
   language: string;
-  customSeoDetail: {
-    __typename: "CustomSeoDetail";
-    description: string | null;
-    noIndex: boolean | null;
-    thumbnail: Image | null;
-    thumbnailId: string | null;
-    title: string | null;
-    canonicalUrl: string | null;
-  };
   relativeUrl: string;
   url: string;
   attachments: any[];
   owner: {
     __typename: "SpaceMember";
     member: Member;
-  };
-  space: {
-    __typename: "Space";
-    id: string;
-    networkId: string;
-    name: string;
-    description: string | null;
-    slug: string;
-    type: string;
-    layout: string;
-    isHomepage: boolean;
-    address: {
-      __typename: "SpaceAddress";
-      path: string;
-      exact: boolean;
-      editable: boolean;
-    };
-    createdById: string;
-    groupId: string;
-    imageId: string;
-    bannerId: string | null;
-    membersCount: number;
-    createdAt: string;
-    updatedAt: string;
-    private: boolean;
-    hidden: boolean;
-    inviteOnly: boolean;
-    nonAdminsCanInvite: boolean;
-    customOrderingIndexInGroup: number;
-    whoCanPost: any | null;
-    whoCanReact: any | null;
-    whoCanReply: any | null;
-    customSeoDetail: {
-      __typename: "CustomSeoDetail";
-      description: string | null;
-      noIndex: boolean | null;
-      thumbnail: Image | null;
-      thumbnailId: string | null;
-      title: string | null;
-    };
-    relativeUrl: string;
-    url: string;
-    image: Image;
-  };
-  replies: {
-    __typename: "PaginatedPost";
-    nodes: any[];
-    pageInfo: {
-      __typename: "PageInfo";
-      endCursor: string | null;
-      hasNextPage: boolean;
-    };
-    totalCount: number;
   };
 };
 
