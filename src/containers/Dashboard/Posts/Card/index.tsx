@@ -1,11 +1,9 @@
-import React from "react";
-
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
-import { Post } from "../../../../types/posts";
-import PostReactions from "../../../../components/PostReactions";
-import { getAllowedReactions } from "../../../../components/PostReactions/utils";
+import { Post } from "types/posts";
+import PostReactions from "components/PostReactions";
+import { getAllowedReactions } from "components/PostReactions/utils";
 
 const PostCard: React.FC<{ post: Post }> = ({ post }) => {
   const navigate = useNavigate();

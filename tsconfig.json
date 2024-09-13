@@ -5,16 +5,16 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "CommonJS",
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
+    "paths": {
+      "*": ["./src/*"]
+    },
+    "esModuleInterop":true,
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

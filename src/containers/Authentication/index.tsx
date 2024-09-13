@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 
 import Otp from "./Otp";
-import Logo from "../../assets/logo.svg";
-import GoogleButton from "../../assets/google.svg";
-import { JWT_TOKEN, JWT_TOKEN_LS } from "../../constants";
+import Logo from "assets/logo.svg";
+import GoogleButton from "assets/google.svg";
+import { JWT_TOKEN, JWT_TOKEN_LS } from "constants/index";
 import { useNavigate } from "react-router-dom";
-import { useRequestTokenCode } from "../../graphql/user/useAuthentication";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import { useRequestTokenCode } from "graphql/user/useAuthentication";
+import LoadingSpinner from "components/LoadingSpinner";
 import Cookies from "universal-cookie";
 import { useState } from "react";
 

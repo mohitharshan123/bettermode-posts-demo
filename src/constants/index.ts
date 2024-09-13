@@ -1,4 +1,4 @@
-import { PostTypeAllowedReactionsMap, ReactionType } from "../types/posts";
+import { PostTypeAllowedReactionsMap, ReactionType } from "types/posts";
 
 export const ROUTES: Record<string, any> = {
   authentication: {

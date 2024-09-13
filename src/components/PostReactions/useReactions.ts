@@ -2,9 +2,9 @@ import { useState, RefObject } from "react";
 import {
   POST_TYPE_ALLOWED_REACTIONS_MAP,
   REACTION_TYPE_TO_EMOJI,
-} from "../../constants";
-import { useReaction, useRemoveReaction } from "../../graphql/posts/usePosts";
-import { Post, ReactionType } from "../../types/posts";
+} from "constants/index";
+import { useReaction, useRemoveReaction } from "graphql/posts/usePosts";
+import { Post, ReactionType } from "types/posts";
 
 /**
  * Custom hook to handle reactions for a post.

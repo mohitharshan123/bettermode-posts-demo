@@ -1,7 +1,7 @@
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
+import Sidebar from "components/Sidebar";
+import Header from "components/Header";
 import { Outlet } from "react-router-dom";
-import { useFetchAuthUser } from "../../graphql/user/useAuthUser";
+import { useFetchAuthUser } from "graphql/user/useAuthUser";
 import { Suspense } from "react";
 
 const Dashboard = () => {

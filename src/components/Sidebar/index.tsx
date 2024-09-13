@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { GoHome } from "react-icons/go";
 import { FaChevronRight } from "react-icons/fa";
-import { CiLogout } from "react-icons/ci"; // Import the logout icon
-import Logo from "../../assets/logo.svg";
-import { JWT_TOKEN_LS, ROUTES } from "../../constants";
+import { CiLogout } from "react-icons/ci";
+import Logo from "assets/logo.svg";
+import { JWT_TOKEN_LS, ROUTES } from "constants/index";
 import Cookies from "universal-cookie";
 
 const Sidebar = () => {

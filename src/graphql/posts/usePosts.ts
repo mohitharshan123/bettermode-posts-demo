@@ -7,7 +7,7 @@ import {
 import { FETCH_POSTS_QUERY, GET_POST_QUERY } from "./queries";
 import { ADD_REACTION_MUTATION, REMOVE_REACTION_MUTATION } from "./mutations";
 import { CacheUpdater } from "./cacheUpdator";
-import { ITEMS_PER_PAGE } from "../../constants";
+import { ITEMS_PER_PAGE } from "constants/index";
 import { useFetchAuthUser } from "../user/useAuthUser";
 
 export const useFetchPosts = (options?: SuspenseQueryHookOptions): any =>

@@ -5,12 +5,12 @@ import {
 import clsx from "clsx";
 import { useRef } from "react";
 import { FaAngleUp } from "react-icons/fa";
-import { Post, ReactionType } from "../../types/posts";
+import { Post, ReactionType } from "types/posts";
 import { getAllowedReactions } from "./utils";
 import useReactions from "./useReactions";
-import useClickOutside from "../../hooks/useClickOutside";
-import { useFetchAuthUser } from "../../graphql/user/useAuthUser";
-import { REACTION_TYPE_TO_EMOJI } from "../../constants";
+import useClickOutside from "hooks/useClickOutside";
+import { useFetchAuthUser } from "graphql/user/useAuthUser";
+import { REACTION_TYPE_TO_EMOJI } from "constants/index";
 
 const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
   const popupRef = useRef<HTMLDivElement>(null);
