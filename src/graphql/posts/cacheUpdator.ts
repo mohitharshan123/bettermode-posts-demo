@@ -1,18 +1,9 @@
 import { ApolloCache } from "@apollo/client/index.js";
 
-type Reaction = {
-  variables: {
-    postId: string;
-    input?: {
-      reaction?: string;
-    };
-  };
-};
-
 type CacheUpdaterParams = {
   cache: ApolloCache<any>;
   data?: any;
-  reaction?: Reaction;
+  reaction?: any;
   user?: Member;
 };
 
@@ -54,13 +45,10 @@ export class CacheUpdater {
 
     const postId = reaction.variables.postId;
 
-    console.log({ postId });
-
     cache.modify({
       id: cache.identify({ id: postId, __typename: "Post" }),
       fields: {
         reactions(existingReactions = []) {
-          console.log({ existingReactions });
           const updatedReactions = CacheUpdater.getUpdatedReactionsForRemove(
             existingReactions,
             user
@@ -101,7 +89,9 @@ export class CacheUpdater {
     }
 
     return existingReactions.map((r: { reaction: string; count: number }) =>
-      r.reaction !== reactionString ? { ...r, reaction: reactionString } : r
+      r.reaction !== reactionString
+        ? { ...r, reaction: reactionString, count: r.count + 1 }
+        : r
     );
   }
 
@@ -114,7 +104,9 @@ export class CacheUpdater {
         nodes: [],
       };
       const hasUserParticipant = participantsField.nodes.some(
-        (node: any) => node.participant.id === user.id
+        (node: any) =>
+          node.participant.id === user.id ||
+          node.participant.__ref === `Member:${user.id}`
       );
 
       return !hasUserParticipant;
