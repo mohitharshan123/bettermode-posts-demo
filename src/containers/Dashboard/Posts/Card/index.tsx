@@ -22,7 +22,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
             <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
               {post.owner.member.name}
             </h4>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <p className="text-sm text-gray-500 dark:text-neutral-400">
                 {moment(post?.createdAt).fromNow()}
               </p>

@@ -42,7 +42,7 @@ const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
   return (
     <div className="relative flex justify-between items-center border-t border-gray-200 dark:border-neutral-700 pt-4 mt-4">
       {isUpvoteType ? (
-        <div className="flex flex-row justify-between w-full items-center">
+        <div className="flex flex-col sm:flex-row gap-1 justify-between w-full items-center">
           <button
             onClick={() => handleReaction(ReactionType.Upvote)}
             className={clsx(
