@@ -1,6 +1,6 @@
 # Bettermode Posts Clone
 
-Welcome to the Bettermode Posts clone project! This repository contains a clone of the Bettermode Posts application.
+Welcome to the Bettermode Posts clone project! This repository contains a clone of the Bettermode Posts page.
 
 You can check it out live at https://bettermode-posts-demo.onrender.com
 
@@ -25,8 +25,6 @@ yarn build
 ```
 
 3. **Start the app**
-
-Start the app
 
 ```bash
 yarn serve
