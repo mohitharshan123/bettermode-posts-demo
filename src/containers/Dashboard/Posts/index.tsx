@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import PostsList from "./List";
 import Skeleton from "./Card/Skeleton";
-import { ITEMS_PER_PAGE } from "../../../constants";
+import { ITEMS_PER_PAGE } from "constants/index";
 
 const Posts = () => {
   return (

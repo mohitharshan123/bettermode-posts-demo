@@ -48,6 +48,10 @@ type Reaction = {
   participants: { nodes: Array<{ participant: Member }> };
 };
 
+type Space = {
+  name: string;
+};
+
 export type Post = {
   __typename: "Post";
   id: string;
@@ -86,6 +90,7 @@ export type Post = {
   relativeUrl: string;
   url: string;
   attachments: any[];
+  space: Space;
   owner: {
     __typename: "SpaceMember";
     member: Member;

@@ -1,11 +1,11 @@
 import { useTransition } from "react";
-import { useFetchPosts } from "../../../graphql/posts/usePosts";
-import { Post } from "../../../types/posts";
+import { useFetchPosts } from "graphql/posts/usePosts";
+import { Post } from "types/posts";
 import PostCard from "./Card";
 import Skeleton from "./Card/Skeleton";
 
 import { FaArrowDown } from "react-icons/fa";
-import { ITEMS_PER_PAGE } from "../../../constants";
+import { ITEMS_PER_PAGE } from "constants/index";
 
 const PostsList = () => {
   const [isPending, startTransition] = useTransition();

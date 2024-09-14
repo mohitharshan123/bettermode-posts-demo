@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Otp from "./Otp";
 import Logo from "assets/logo.svg";
 import GoogleButton from "assets/google.svg";
-import { JWT_TOKEN, JWT_TOKEN_LS } from "constants/index";
+import { JWT_TOKEN, JWT_TOKEN_COOKIE_NAME } from "constants/index";
 import { useNavigate } from "react-router-dom";
 import { useRequestTokenCode } from "graphql/user/useAuthentication";
 import LoadingSpinner from "components/LoadingSpinner";
@@ -36,7 +36,7 @@ const Login = () => {
 
   const handleOtpCompleted = async () => {
     const cookies = new Cookies();
-    cookies.set(JWT_TOKEN_LS, JWT_TOKEN, { path: "/" });
+    cookies.set(JWT_TOKEN_COOKIE_NAME, import.meta.env.VITE_JWT_TOKEN, { path: "/" });
     navigate("/posts");
   };
 

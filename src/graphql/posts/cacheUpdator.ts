@@ -32,6 +32,9 @@ export class CacheUpdater {
           );
           return updatedReactions;
         },
+        reactionsCount(existingCount) {
+          return existingCount + 1;
+        },
       },
     });
   }
@@ -54,6 +57,9 @@ export class CacheUpdater {
             user
           );
           return updatedReactions;
+        },
+        reactionsCount(existingCount) {
+          return existingCount - 1;
         },
       },
     });

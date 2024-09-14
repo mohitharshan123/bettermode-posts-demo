@@ -3,7 +3,7 @@ import { GoHome } from "react-icons/go";
 import { FaChevronRight } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import Logo from "assets/logo.svg";
-import { JWT_TOKEN_LS, ROUTES } from "constants/index";
+import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
 import Cookies from "universal-cookie";
 
 const Sidebar = () => {
@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     const cookies = new Cookies();
-    cookies.remove(JWT_TOKEN_LS);
+    cookies.remove(JWT_TOKEN_COOKIE_NAME);
     navigate(ROUTES.authentication.index);
   };
 

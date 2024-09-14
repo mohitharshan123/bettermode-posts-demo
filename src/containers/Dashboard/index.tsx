@@ -1,5 +1,5 @@
-import Sidebar from "components/Sidebar";
-import Header from "components/Header";
+import Sidebar from "components/Sidebar.tsx";
+import Header from "components/Header.tsx";
 import { Outlet } from "react-router-dom";
 import { useFetchAuthUser } from "graphql/user/useAuthUser";
 import { Suspense } from "react";

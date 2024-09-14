@@ -12,9 +12,9 @@ type Member = {
   emailStatus: "verified";
   newEmail: string | null;
   tagline: string | null;
-  lastSeenAt: string; // ISO 8601 format
-  createdAt: string; // ISO 8601 format
-  updatedAt: string; // ISO 8601 format
+  lastSeenAt: string;
+  createdAt: string;
+  updatedAt: string;
   relativeUrl: string;
   url: string;
   externalId: string | null;

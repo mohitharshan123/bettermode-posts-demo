@@ -7,6 +7,8 @@ import {
 } from "@apollo/client-react-streaming/stream-utils";
 import cookieParser from "cookie-parser";
 
+import { redirectMiddleware } from "./redirectMiddleware.js";
+
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
@@ -47,29 +49,9 @@ if (!isProduction) {
   }
 }
 
-// Middleware to handle redirection based on authentication
-const redirectMiddleware = (req, res, next) => {
-  const authToken = req.cookies["JWT_TOKEN"];
-
-  if (req.originalUrl === "/" && authToken) {
-    return res.redirect("/posts");
-  }
-
-  if (authToken && req.originalUrl === "/authentication") {
-    return res.redirect("/posts");
-  }
-
-  if (!authToken && req.originalUrl !== "/authentication") {
-    return res.redirect("/authentication");
-  }
-
-  next();
-};
-
 app.use(redirectMiddleware);
 
 app.use("*", async (req, res) => {
-  // The new wiring is a bit more involved.
   res.socket.on("error", (error) => {
     console.error("Fatal", error);
   });

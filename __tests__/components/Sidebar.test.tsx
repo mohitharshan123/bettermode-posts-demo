@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { useNavigate } from "react-router-dom";
-import { JWT_TOKEN_LS, ROUTES } from "constants/index";
-import Sidebar from "components/Sidebar";
+import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
+import Sidebar from "components/Sidebar.tsx";
 import Cookies from "universal-cookie";
 
 const navigateMock = jest.fn();
@@ -60,7 +60,7 @@ describe("Sidebar Component", () => {
     fireEvent.click(logoutButton);
 
     await waitFor(() => {
-      expect(removeMock).toHaveBeenCalledWith(JWT_TOKEN_LS);
+      expect(removeMock).toHaveBeenCalledWith(JWT_TOKEN_COOKIE_NAME);
     });
   });
 });

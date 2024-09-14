@@ -38,21 +38,26 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
   return (
     <div className="relative flex justify-between items-center border-t border-gray-200 dark:border-neutral-700 pt-4 mt-4">
       {isUpvoteType ? (
-        <button
-          onClick={() => handleReaction(ReactionType.Upvote)}
-          className={clsx(
-            "text-white px-4 py-2 rounded-md flex flex-row items-center gap-2",
-            {
-              "dark:bg-gray-800 bg-blue-500 hover:bg-blue-600 dark:hover:bg-blue-500":
-                !post.reactions?.[0]?.reacted,
-              "dark:bg-gray-500 bg-blue-300 hover:bg-blue-400  dark:hover:bg-blue-300":
-                !!post.reactions?.[0]?.reacted,
-            }
-          )}
-        >
-          <span>Upvote</span>
-          <FaAngleUp />
-        </button>
+        <div className="flex flex-row justify-between w-full items-center">
+          <button
+            onClick={() => handleReaction(ReactionType.Upvote)}
+            className={clsx(
+              "text-white px-4 py-2 rounded-md flex flex-row items-center gap-2",
+              {
+                "dark:bg-gray-800 bg-blue-500 hover:bg-blue-600 dark:hover:bg-blue-500":
+                  !post.reactions?.[0]?.reacted,
+                "dark:bg-gray-500 bg-blue-300 hover:bg-blue-400  dark:hover:bg-blue-300":
+                  !!post.reactions?.[0]?.reacted,
+              }
+            )}
+          >
+            <span>Upvote</span>
+            <FaAngleUp />
+          </button>
+          <span className="text-gray-800 dark:text-white">
+            {post.reactionsCount} {`vote${post.reactionsCount > 1 || post.reactionsCount == 0 ? "s" : ""}`}
+          </span>
+        </div>
       ) : (
         <>
           {isPopupOpen && (
@@ -76,6 +81,7 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
           </button>
           <div className="reaction-container">
             <ReactionCounter
+              className="text-gray-800 dark:text-white"
               showOthersAlways={false}
               user={user.authMember?.name}
               reactions={post?.reactions?.map(({ reaction, participants }) => ({

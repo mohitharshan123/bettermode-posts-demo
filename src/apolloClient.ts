@@ -2,7 +2,8 @@ import { createHttpLink, ApolloLink } from "@apollo/client/index.js";
 import { ApolloClient, InMemoryCache } from "@apollo/client-react-streaming";
 
 import { setContext } from "@apollo/client/link/context";
-import { BASE_URL, GLOBAL_BASE_URL, JWT_TOKEN } from "./constants/index.ts";
+import { BASE_URL, GLOBAL_BASE_URL } from "./constants/index.ts";
+import Cookies from "universal-cookie";
 
 const httpLink = createHttpLink({
   uri: BASE_URL,
@@ -13,10 +14,11 @@ const globalLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
+  const cookies = new Cookies();
   return {
     headers: {
       ...headers,
-      authorization: `Bearer ${JWT_TOKEN}`,
+      authorization: `Bearer ${import.meta.env.VITE_JWT_TOKEN}`,
     },
   };
 });

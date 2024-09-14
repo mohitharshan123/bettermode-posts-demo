@@ -1,5 +1,5 @@
-import { POST_TYPE_ALLOWED_REACTIONS_MAP } from "../../../constants";
-import { ReactionType } from "../../../types/posts";
+import { POST_TYPE_ALLOWED_REACTIONS_MAP } from "constants/index";
+import { ReactionType } from "types/posts";
 
 /**
  * Get the available reactions for a post based on its type.
