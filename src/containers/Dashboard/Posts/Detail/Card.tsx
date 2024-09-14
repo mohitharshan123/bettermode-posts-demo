@@ -18,7 +18,7 @@ const DetailCard: React.FC = () => {
 
   return (
     <div>
-      <div className="bg-white border m-10 border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
+      <div className="bg-white border m-4 border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
         <div className="flex justify-center mb-6">
           <img
             src={data?.post.space.image.url}
