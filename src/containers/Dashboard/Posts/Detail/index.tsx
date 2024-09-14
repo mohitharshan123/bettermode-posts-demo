@@ -8,7 +8,7 @@ const PostDetail = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="p-10">
+    <div className="p-8">
       <button
         onClick={() => navigate(-1)}
         className="cursor-pointer flex items-center text-blue-500 hover:text-blue-700 dark:text-gray-400 dark:hover:text-gray-500 mb-4"
