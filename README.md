@@ -2,6 +2,8 @@
 
 Welcome to the Bettermode Posts clone project! This repository contains a clone of the Bettermode Posts application.
 
+You can check it out at https://bettermode-posts-demo.onrender.com/  
+
 ## Getting Started
 
 To get started with the project, follow these steps:
@@ -29,8 +31,8 @@ yarn serve
 
    The app would be running at http://localhost:5173
 
-4. **CI**
+4. **CI/CD**
 
-   This project includes Continuous Integration (CI) to automate testing and building processes. The CI configuration ensures that every code change is automatically tested and built to maintain the project's integrity.
+   This project includes Continuous Integration (CI) and Continuous deployment to automate testing and deployment processes. The CI configuration ensures that every code change is automatically tested and built to maintain the project's integrity.
 
    Check the CI pipeline status to ensure that all builds and tests are passing.
