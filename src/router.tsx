@@ -1,20 +1,30 @@
+import BounceLoader from "components/BounceLoader";
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Dashboard from "containers/Dashboard";
-import Login from "containers/Authentication";
-import Posts from "containers/Dashboard/Posts";
-import PostDetail from "containers/Dashboard/Posts/Detail";
-import NotFound from "containers/NotFound";
+const Dashboard = lazy(() => import("containers/Dashboard"));
+const Login = lazy(() => import("containers/Authentication"));
+const Posts = lazy(() => import("containers/Dashboard/Posts"));
+const PostDetail = lazy(() => import("containers/Dashboard/Posts/Detail"));
+const NotFound = lazy(() => import("containers/NotFound"));
 
 export const Router = () => {
   return (
-    <Routes>
-      <Route path="/authentication" Component={Login} />
-      <Route path="/" Component={Dashboard}>
-        <Route path="posts" Component={Posts} />
-        <Route path="posts/:postId" Component={PostDetail} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense
+      fallback={
+        <div className="w-screen h-screen flex items-center justify-center">
+          <BounceLoader />
+        </div>
+      }
+    >
+      <Routes>
+        <Route path="/authentication" element={<Login />} />
+        <Route path="/" element={<Dashboard />}>
+          <Route path="posts" element={<Posts />} />
+          <Route path="posts/:postId" element={<PostDetail />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };

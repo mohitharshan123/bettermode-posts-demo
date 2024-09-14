@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 import { POST_TYPE_ALLOWED_REACTIONS_MAP } from "constants/index";
 import { ReactionType } from "types/posts";
