@@ -1,9 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useFetchAuthUser } from "graphql/user/useAuthUser";
 import { ReactionType } from "types/posts";
 import useReactions from "components/PostReactions/useReactions";
-import PostReactions from "components/PostReactions";
+import PostReactions from "components/PostReactions/index";
 
 jest.mock("graphql/user/useAuthUser", () => ({
   useFetchAuthUser: jest.fn(),
@@ -76,11 +77,9 @@ describe("PostReactions Component", () => {
 
     render(<PostReactions post={mockPost} />);
 
-    // Click on the Like button to toggle the popup
     const likeButton = screen.getByText("Like");
     fireEvent.click(likeButton);
 
-    // Check if the ReactionBarSelector is rendered
 
     await waitFor(() => {
       const reactionBarSelector = screen.getByText("ReactionBarSelector");

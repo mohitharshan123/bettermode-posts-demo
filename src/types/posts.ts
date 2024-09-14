@@ -1,24 +1,8 @@
-type MediaUrls = {
-  full: string;
-  large: string;
-  medium: string;
-  small: string;
-  thumb: string;
-};
-
 type Image = {
   id: string;
   url: string;
-  width: number | null;
-  height: number | null;
-  dominantColorHex: string | null;
-  dpi: number | null;
-  cropHeight: number | null;
-  cropWidth: number | null;
-  cropX: number | null;
-  cropY: number | null;
-  cropZoom: number | null;
-  urls: MediaUrls;
+  width?: number | null;
+  height?: number | null;
 };
 
 type Member = {
@@ -50,6 +34,7 @@ type Reaction = {
 
 type Space = {
   name: string;
+  image: Image;
 };
 
 export type Post = {
@@ -90,6 +75,7 @@ export type Post = {
   relativeUrl: string;
   url: string;
   attachments: any[];
+  tags: Array<{ title: string }>;
   space: Space;
   owner: {
     __typename: "SpaceMember";

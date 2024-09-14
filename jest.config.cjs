@@ -12,4 +12,12 @@ module.exports = {
     "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.ts",
   },
   modulePaths: ["<rootDir>"],
+  transformIgnorePatterns: ["./node_modules/(?!@apollo/client/).+\\.js$"],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+    "^.+\\.cjs$": "babel-jest",
+  },
+  testPathIgnorePatterns: ["<rootDir>/node_modules/"],
+  preset: "ts-jest/presets/js-with-ts-esm",
 };

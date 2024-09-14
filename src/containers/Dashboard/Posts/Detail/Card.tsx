@@ -35,11 +35,13 @@ const DetailCard: React.FC = () => {
         </div>
 
         <h1 className="font-bold text-xl mb-10 text-gray-800 dark:text-white">
-          {cleanHtmlContent(title?.value)}
+          {cleanHtmlContent(title?.value ?? "")}
         </h1>
 
         <div
-          dangerouslySetInnerHTML={{ __html: cleanHtmlContent(content?.value) }}
+          dangerouslySetInnerHTML={{
+            __html: cleanHtmlContent(content?.value ?? ""),
+          }}
           className="text-gray-600 dark:text-white whitespace-pre-line"
         ></div>
 

@@ -15,7 +15,11 @@ import {
 import useReactions from "./useReactions";
 import { getAllowedReactions } from "./utils";
 
-const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
+interface PostReactionsProps {
+  post: Post;
+}
+
+const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -44,9 +48,9 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
             className={clsx(
               "text-white px-4 py-2 rounded-md flex flex-row items-center gap-2",
               {
-                "dark:bg-gray-800 bg-blue-500 hover:bg-blue-600 dark:hover:bg-blue-500":
+                "dark:bg-gray-800 bg-gray-400 hover:bg-blue-600 dark:hover:bg-blue-500":
                   !post.reactions?.[0]?.reacted,
-                "dark:bg-gray-500 bg-blue-300 hover:bg-blue-400  dark:hover:bg-blue-300":
+                "dark:bg-gray-500 bg-gray-300 hover:bg-blue-400  dark:hover:bg-blue-300":
                   !!post.reactions?.[0]?.reacted,
               }
             )}
@@ -75,7 +79,7 @@ const PostReactions: React.FC<{ post: Post }> = ({ post }) => {
           <button
             ref={buttonRef}
             onClick={() => setIsPopupOpen(!isPopupOpen)}
-            className="text-white px-4 py-2 rounded-md bg-blue-500 hover:bg-blue-600 dark:bg-neutral-800 dark:border-neutral-700"
+            className="px-4 py-2 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300 dark:bg-neutral-800 dark:border-neutral-700"
           >
             {post.reactions?.[0]?.reacted ? reactionEmoji : "Like"}
           </button>

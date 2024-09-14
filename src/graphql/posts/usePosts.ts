@@ -9,6 +9,7 @@ import { ADD_REACTION_MUTATION, REMOVE_REACTION_MUTATION } from "./mutations";
 import { CacheUpdater } from "./cacheUpdator";
 import { ITEMS_PER_PAGE } from "constants/index";
 import { useFetchAuthUser } from "../user/useAuthUser";
+import { Post } from "types/posts";
 
 export const useFetchPosts = (options?: SuspenseQueryHookOptions): any =>
   useSuspenseQuery(FETCH_POSTS_QUERY, {
@@ -25,7 +26,7 @@ export const useGetPost = (
   id: string | undefined,
   options?: SuspenseQueryHookOptions
 ) =>
-  useSuspenseQuery(GET_POST_QUERY, {
+  useSuspenseQuery<{ post: Post }>(GET_POST_QUERY, {
     variables: {
       id,
     },

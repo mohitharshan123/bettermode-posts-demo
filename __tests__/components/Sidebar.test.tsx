@@ -1,5 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
 import Sidebar from "components/Sidebar.tsx";
