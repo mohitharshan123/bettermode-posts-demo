@@ -9,9 +9,9 @@ import Cookies from "universal-cookie";
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     const cookies = new Cookies();
-    cookies.remove(JWT_TOKEN_COOKIE_NAME);
+    await cookies.remove(JWT_TOKEN_COOKIE_NAME, { path: "/" });
     navigate(ROUTES.authentication.index);
   };
 
