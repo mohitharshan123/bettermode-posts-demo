@@ -10,21 +10,21 @@ To get started with the project, follow these steps:
    Use Yarn to install the required dependencies:
 
 ```bash
-   yarn
+yarn
 ```
 
 2. **Create a build**  
    Use Yarn to create a build of the project:
 
 ```bash
- yarn build
+yarn build
 ```
 
 3. **Start the app**
    Start the app
 
 ```bash
-   yarn serve
+yarn serve
 ```
 
    The app would be running at http://localhost:5173
