@@ -12,7 +12,7 @@ const Html: React.FC<HtmlProps> = ({ isProduction, assets, children }) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + React</title>
+        <title>Bettermode</title>
         {assets?.map((asset: string) => (
           <link
             key={asset}
