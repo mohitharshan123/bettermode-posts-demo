@@ -5,6 +5,8 @@ import {
 } from "constants/index";
 import { useReaction, useRemoveReaction } from "graphql/posts/usePosts";
 import { Post, ReactionType } from "types/posts";
+import { useFetchAuthUser } from "graphql/user/useAuthUser";
+import { isSameReaction } from "./utils";
 
 /**
  * Custom hook to handle reactions for a post.
@@ -26,6 +28,7 @@ const useReactions = ({
   popupRef: RefObject<HTMLDivElement>;
   buttonRef: RefObject<HTMLButtonElement>;
 }) => {
+  const { data: user } = useFetchAuthUser();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [reactPost] = useReaction();
@@ -36,22 +39,22 @@ const useReactions = ({
       ReactionType.Upvote
     ) ?? false;
 
-  const handleReaction = (reaction: string) => {
-    if (
-      (post.reactions?.[0]?.reacted && isUpvoteType) ||
-      post.reactions?.[0]?.reaction == reaction
-    ) {
+  const handleReaction = (currentReaction: string) => {
+    if (isSameReaction(post, user.authMember, currentReaction)) {
       removeReaction({
         variables: {
           postId: post.id,
-          reaction,
+          reaction: currentReaction,
         },
       });
     } else {
       reactPost({
         variables: {
           postId: post.id,
-          input: { reaction, overrideSingleChoiceReactions: true },
+          input: {
+            reaction: currentReaction,
+            overrideSingleChoiceReactions: true,
+          },
         },
       });
     }
