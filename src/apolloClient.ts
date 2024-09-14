@@ -3,7 +3,6 @@ import { ApolloClient, InMemoryCache } from "@apollo/client-react-streaming";
 
 import { setContext } from "@apollo/client/link/context";
 import { BASE_URL, GLOBAL_BASE_URL } from "./constants/index.ts";
-import Cookies from "universal-cookie";
 
 const httpLink = createHttpLink({
   uri: BASE_URL,
@@ -14,7 +13,6 @@ const globalLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const cookies = new Cookies();
   return {
     headers: {
       ...headers,
