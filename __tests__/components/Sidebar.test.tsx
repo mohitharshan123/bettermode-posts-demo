@@ -61,7 +61,9 @@ describe("Sidebar Component", () => {
     fireEvent.click(logoutButton);
 
     await waitFor(() => {
-      expect(removeMock).toHaveBeenCalledWith(JWT_TOKEN_COOKIE_NAME);
+      expect(removeMock).toHaveBeenCalledWith(JWT_TOKEN_COOKIE_NAME, {
+        path: "/",
+      });
     });
   });
 });
