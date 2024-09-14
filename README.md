@@ -1,8 +1,9 @@
 # Bettermode Posts Clone
 
-Welcome to the Bettermode Posts clone project! This repository contains a clone of the Bettermode Posts page done as part of the assignment mentioned at https://bettermode.notion.site/Senior-Front-End-Engineer-485a0725e4d940c3a01fafe2b5154598
+Welcome to the Bettermode Posts clone project! This repository contains a clone of the Bettermode Posts page done as part of the assignment mentioned at 
+[Assignment](https://bettermode.notion.site/Senior-Front-End-Engineer-485a0725e4d940c3a01fafe2b5154598)
 
-You can check it out live at https://bettermode-posts-demo.onrender.com
+You can check it out live at [Bettermode](https://bettermode-posts-demo.onrender.com)
 
 ## Getting Started
 
