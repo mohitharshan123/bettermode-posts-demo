@@ -6,6 +6,8 @@ import PostsList from "containers/Dashboard/Posts/List";
 import { useFetchPosts } from "graphql/posts/usePosts";
 import { BrowserRouter } from "react-router-dom";
 
+let MockObserverInstance: ResizeObserver;
+
 jest.mock("graphql/posts/usePosts", () => ({
   useFetchPosts: jest.fn(),
 }));
@@ -21,6 +23,15 @@ describe("PostsList Component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     fetchMoreMock = jest.fn();
+
+    MockObserverInstance = {
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    };
+    global.ResizeObserver = jest
+      .fn()
+      .mockImplementation(() => MockObserverInstance);
 
     (useFetchPosts as jest.Mock).mockReturnValue({
       data: {
