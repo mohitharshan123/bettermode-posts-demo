@@ -41,7 +41,7 @@ const Sidebar = () => {
     <>
       <div className="lg:hidden fixed top-4 left-4 z-30">
         <button
-          className="text-gray-500 dark:text-gray-200 dark:bg-neutral-700"
+          className="text-gray-700 dark:text-gray-200"
           onClick={toggleSidebar}
           aria-label="Open sidebar"
           ref={toggleButtonRef}

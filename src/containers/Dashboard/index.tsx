@@ -13,7 +13,7 @@ const Dashboard = () => {
         <Header user={data?.authMember} />
       </Suspense>
       <Sidebar />
-      <div className="lg:ml-[270px] ">
+      <div className="lg:ml-[270px] mt-16">
         <Outlet />
       </div>
     </div>
