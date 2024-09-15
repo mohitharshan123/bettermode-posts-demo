@@ -33,7 +33,7 @@ const Sidebar = () => {
     action: () => setIsOpen(false),
   });
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname.includes(path);
 
   return (
     <>
