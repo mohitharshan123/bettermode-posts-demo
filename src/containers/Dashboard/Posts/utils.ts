@@ -1,5 +1,3 @@
-import DOMPurify from "dompurify";
-
 import { POST_TYPE_ALLOWED_REACTIONS_MAP } from "constants/index";
 import { ReactionType } from "types/posts";
 
@@ -33,5 +31,5 @@ export const cleanHtmlContent = (html: string) => {
 
   // Add a space between <li> elements
   cleanedHtml = cleanedHtml.replace(/<\/li>/g, "</li>\n");
-  return DOMPurify.sanitize(cleanedHtml);
+  return cleanedHtml;
 };
