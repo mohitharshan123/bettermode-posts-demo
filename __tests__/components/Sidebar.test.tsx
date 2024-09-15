@@ -1,16 +1,14 @@
 import "@testing-library/jest-dom";
-
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
 import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
-import Sidebar from "components/Sidebar.tsx";
-import Cookies from "universal-cookie";
+import Sidebar from "components/Sidebar";
 
 const navigateMock = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   useNavigate: () => navigateMock,
 }));
+
 const removeMock = jest.fn();
 
 jest.mock("universal-cookie", () => {
@@ -19,21 +17,10 @@ jest.mock("universal-cookie", () => {
   }));
 });
 
-const navigate = useNavigate();
-
 describe("Sidebar Component", () => {
-  let cookies: jest.Mocked<Cookies>;
-
   beforeEach(() => {
-    cookies = new Cookies() as jest.Mocked<Cookies>;
-    cookies.remove.mockClear();
-  });
-
-  test("renders Sidebar component and Logout link", () => {
-    render(<Sidebar />);
-
-    const logoutLink = screen.getByText("Logout", { selector: "li" });
-    expect(logoutLink).toBeInTheDocument();
+    removeMock.mockClear();
+    navigateMock.mockClear();
   });
 
   test("renders Sidebar component and Logout button", () => {
@@ -43,14 +30,21 @@ describe("Sidebar Component", () => {
     expect(logoutButton).toBeInTheDocument();
   });
 
+  test("renders Sidebar component and Posts link", () => {
+    render(<Sidebar />);
+
+    const postsLink = screen.getByText("Posts", { selector: "a" });
+    expect(postsLink).toBeInTheDocument();
+  });
+
   it('should navigate to posts when clicking "Posts"', async () => {
     render(<Sidebar />);
 
-    const postsLink = await screen.findByText("Posts", { selector: "li" });
+    const postsLink = screen.getByText("Posts", { selector: "a" });
     fireEvent.click(postsLink);
 
     await waitFor(() => {
-      expect(navigate).toHaveBeenCalledWith(ROUTES.posts.index);
+      expect(navigateMock).toHaveBeenCalledWith(ROUTES.posts.index);
     });
   });
 
@@ -64,6 +58,26 @@ describe("Sidebar Component", () => {
       expect(removeMock).toHaveBeenCalledWith(JWT_TOKEN_COOKIE_NAME, {
         path: "/",
       });
+    });
+  });
+
+  test("should toggle sidebar visibility on mobile", async () => {
+    render(<Sidebar />);
+
+    const sidebar = screen.getByRole("dialog");
+    expect(sidebar).toHaveClass("-translate-x-full");
+
+    const toggleButton = screen.getByLabelText("Open sidebar");
+    fireEvent.click(toggleButton);
+
+    await waitFor(() => {
+      expect(sidebar).toHaveClass("translate-x-0");
+    });
+
+    fireEvent.click(toggleButton);
+
+    await waitFor(() => {
+      expect(sidebar).toHaveClass("-translate-x-full");
     });
   });
 });

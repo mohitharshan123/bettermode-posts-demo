@@ -1,13 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { GoHome } from "react-icons/go";
-import { FaChevronRight } from "react-icons/fa";
-import { CiLogout } from "react-icons/ci";
-import Logo from "assets/logo.svg";
-import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
+import { useRef, useState } from "react";
+
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
+
+import Logo from "assets/logo.svg";
+import { GoHome } from "react-icons/go";
+import { FaBars } from "react-icons/fa";
+import { CiLogout } from "react-icons/ci";
+import useClickOutside from "hooks/useClickOutside";
+import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
 
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navigate = useNavigate();
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleLogout = async () => {
     const cookies = new Cookies();
@@ -15,44 +23,35 @@ const Sidebar = () => {
     navigate(ROUTES.authentication.index);
   };
 
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useClickOutside({
+    popupRef: sidebarRef,
+    buttonRef: toggleButtonRef,
+    action: () => setIsOpen(false),
+  });
+
   return (
     <>
-      <div className="-mt-px">
-        <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-neutral-800 dark:border-neutral-700">
-          <div className="flex items-center py-2">
-            <ol className="w-full ms-3 flex items-center whitespace-nowrap">
-              <li className="mr-1 flex items-center text-sm text-gray-800 dark:text-neutral-400">
-                Dashboard
-                <FaChevronRight className="ml-2" />
-              </li>
-              <li
-                className="cursor-pointer hover:text-gray-500 text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
-                aria-current="page"
-                onClick={() => navigate(ROUTES.posts.index)}
-              >
-                Posts
-              </li>
-              <li
-                className="ml-auto cursor-pointer hover:text-gray-500 text-sm font-semibold text-gray-800 truncate dark:text-neutral-400"
-                aria-current="page"
-                onClick={handleLogout}
-              >
-                Logout
-              </li>
-            </ol>
-          </div>
-        </div>
+      <div className="lg:hidden fixed top-4 left-4 z-30">
+        <button
+          className="bg-gray-200 rounded-full dark:bg-neutral-700"
+          onClick={toggleSidebar}
+          aria-label="Open sidebar"
+          ref={toggleButtonRef}
+        >
+          <FaBars size={24} />
+        </button>
       </div>
+
       <div
         id="hs-application-sidebar"
-        className="hs-overlay [--auto-close:lg]
-  hs-overlay-open:translate-x-0
-  w-[260px] h-full
-  hidden
-  fixed inset-y-0 start-0 z-[60]
-  bg-white border-e border-gray-200
-  lg:block lg:end-auto lg:bottom-0
-  dark:bg-neutral-800 dark:border-neutral-700"
+        ref={sidebarRef}
+        className={`fixed inset-y-0 start-0 z-40 w-[260px] bg-white border-e border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:block lg:w-[260px]`}
         role="dialog"
         tabIndex={-1}
         aria-label="Sidebar"
@@ -61,16 +60,15 @@ const Sidebar = () => {
           <div className="px-6 pt-4">
             <a
               className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
-              aria-label="Bettermode"
+              aria-label="Logo"
             >
-              <img src={Logo} alt="logo" />
+              <img src={Logo} alt="logo" className="w-32" />
             </a>
           </div>
 
           <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
             <nav
               className="hs-accordion-group p-3 w-full flex flex-col flex-wrap flex-grow"
-              data-hs-accordion-always-open
             >
               <ul className="flex flex-col space-y-1 flex-grow">
                 <li>
