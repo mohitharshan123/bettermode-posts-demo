@@ -67,7 +67,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
               <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent"></div>
             )}
           </div>
-          {isOverflowing && (
+          {(isOverflowing || isExpanded) && (
             <button
               onClick={() => setIsExpanded((prev) => !prev)}
               className="text-blue-500 dark:text-blue-300 mt-2 hover:underline text-left"
