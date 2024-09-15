@@ -8,11 +8,13 @@ import { CiLogout } from "react-icons/ci";
 import useClickOutside from "hooks/useClickOutside";
 import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
 import clsx from "clsx";
+import useScrollStore from "stores/useScrollStore";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isInfiniteScrollEnabled, toggleInfiniteScroll } = useScrollStore();
 
   const sidebarRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
@@ -105,6 +107,18 @@ const Sidebar = () => {
                 <CiLogout size={20} />
                 Logout
               </button>
+            </div>
+
+            <div className="p-3">
+              <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg w-full hover:bg-gray-100 focus:outline-none dark:text-white dark:hover:bg-neutral-700 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isInfiniteScrollEnabled}
+                  onChange={toggleInfiniteScroll}
+                  className="form-checkbox h-5 w-5 text-blue-500"
+                />
+                <span className="ml-2">Enable Infinite Scroll</span>
+              </label>
             </div>
           </div>
         </div>

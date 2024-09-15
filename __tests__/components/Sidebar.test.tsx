@@ -2,6 +2,17 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
 import Sidebar from "components/Sidebar";
+import { create } from "zustand";
+import { ScrollStoreState } from "stores/useScrollStore";
+
+const useScrollStoreMock = create<ScrollStoreState>((set) => ({
+  isInfiniteScrollEnabled: false,
+  toggleInfiniteScroll: jest.fn(() =>
+    set((state) => ({
+      isInfiniteScrollEnabled: !state.isInfiniteScrollEnabled,
+    }))
+  ),
+}));
 
 const navigateMock = jest.fn();
 
@@ -22,6 +33,7 @@ describe("Sidebar Component", () => {
   beforeEach(() => {
     removeMock.mockClear();
     navigateMock.mockClear();
+    useScrollStoreMock.getState().toggleInfiniteScroll = jest.fn();
   });
 
   test("renders Sidebar component and Logout button", () => {

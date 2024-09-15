@@ -9,6 +9,7 @@ module.exports = {
     "^assets/(.*)$": "<rootDir>/__mocks__/fileMock.ts",
     "constants/(.*)": "<rootDir>/src/constants/$1",
     "types/(.*)": "<rootDir>/src/types/$1",
+    "stores/(.*)": "<rootDir>/src/stores/$1",
     "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.ts",
   },
   modulePaths: ["<rootDir>"],
