@@ -13,21 +13,23 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
     <ErrorBoundary>
       <div className="flex flex-col bg-white border border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
         <div className="flex items-center mb-4">
-          <img
-            src={post?.owner?.member?.profilePicture?.url || ""}
-            alt="Job Poster"
-            className="rounded-full w-16 h-16 object-cover border-2 border-blue-500 dark:border-blue-300"
-          />
+          {post?.owner?.member?.profilePicture?.url && (
+            <img
+              src={post?.owner?.member?.profilePicture?.url}
+              alt="Job Poster"
+              className="rounded-full w-16 h-16 object-cover border-2 border-blue-500 dark:border-blue-300"
+            />
+          )}
           <div className="ml-4">
             <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
-              {post.owner.member.name}
+              {post.owner?.member?.name}
             </h4>
             <div className="flex flex-col gap-1">
               <p className="text-sm text-gray-500 dark:text-neutral-400">
                 {moment(post?.createdAt).fromNow()}
               </p>
               <p className="text-xs text-gray-500 dark:text-neutral-400">
-                Posted in {post.space.name}
+                Posted in {post.space?.name}
               </p>
             </div>
           </div>
@@ -43,7 +45,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
             {post.description}
           </p>
         </div>
-        {getAllowedReactions(post).length > 0 && (
+        {getAllowedReactions(post)?.length > 0 && (
           <PostReactions {...{ post }} />
         )}
       </div>

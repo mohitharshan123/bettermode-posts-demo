@@ -36,7 +36,7 @@ const Login = () => {
 
   const handleOtpCompleted = async () => {
     const cookies = new Cookies();
-    cookies.set(JWT_TOKEN_COOKIE_NAME, import.meta.env.VITE_JWT_TOKEN, {
+    cookies.set(JWT_TOKEN_COOKIE_NAME, "JWT", {
       path: "/",
     });
     navigate("/posts");

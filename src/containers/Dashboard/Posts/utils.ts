@@ -18,7 +18,7 @@ export const getAvailableReactions = (postTypeId: string): ReactionType[] => {
  * @returns The cleaned-up HTML content.
  */
 export const cleanHtmlContent = (html: string) => {
-  if (!html) return;
+  if (!html) return "";
   // Remove escaped double quotes
   let cleanedHtml = html.slice(1, -1);
 

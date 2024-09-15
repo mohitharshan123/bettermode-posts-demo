@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import useClickOutside from "hooks/useClickOutside";
 import { useRef } from "react";
 
-// Helper component to use the hook
 const TestComponent = ({ action }: { action: () => void }) => {
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
