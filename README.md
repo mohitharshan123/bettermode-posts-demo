@@ -41,3 +41,4 @@ Enhancements
 - Code Splitting: Loads JavaScript code on demand to improve performance.
 - Updating Apollo Cache: Manages client-side data for faster and consistent user experiences.
 - CI/CD: Automates integration, testing, and deployment processes to ensure reliable and continuous delivery of updates.
+- Inifinite scroll: Option to enable/disable infinte scrolling in posts list page.
