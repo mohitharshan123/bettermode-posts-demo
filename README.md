@@ -40,3 +40,4 @@ Enhancements
 - Unit Tests: Verifies individual components and logic to ensure correctness. CI/CD for continuous ingegration and deployments.
 - Code Splitting: Loads JavaScript code on demand to improve performance.
 - Updating Apollo Cache: Manages client-side data for faster and consistent user experiences.
+- CI/CD: Automates integration, testing, and deployment processes to ensure reliable and continuous delivery of updates.
