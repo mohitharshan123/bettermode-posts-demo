@@ -39,7 +39,7 @@ const mockPost: any = {
       participants: { nodes: [{ participant: mockMember }] },
     },
   ],
-  postTypeId: "some-post-type",
+  postTypeId: "LM0AXrsLZMwXhRJ",
 };
 
 const mockUser = {
@@ -79,7 +79,6 @@ describe("PostReactions Component", () => {
 
     const likeButton = screen.getByText("Like");
     fireEvent.click(likeButton);
-
 
     await waitFor(() => {
       const reactionBarSelector = screen.getByText("ReactionBarSelector");
