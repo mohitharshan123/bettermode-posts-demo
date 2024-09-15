@@ -48,9 +48,9 @@ const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
             className={clsx(
               "text-white px-4 py-2 rounded-md flex flex-row items-center gap-2",
               {
-                "dark:bg-gray-800 bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-500":
+                "dark:bg-gray-700 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600":
                   !post.reactions?.[0]?.reacted,
-                "dark:bg-gray-500 bg-gray-500 hover:bg-gray-600  dark:hover:bg-gray-700":
+                "dark:bg-gray-600 bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-500":
                   !!post.reactions?.[0]?.reacted,
               }
             )}
@@ -82,7 +82,7 @@ const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
           <button
             ref={buttonRef}
             onClick={() => setIsPopupOpen(!isPopupOpen)}
-            className="px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-500 dark:bg-neutral-800 dark:border-neutral-700"
+            className="px-4 py-2 rounded-md bg-gray-300 text-white  hover:bg-gray-300 dark:hover:bg-gray-500 dark:bg-neutral-800 dark:border-neutral-700"
           >
             {post.reactions?.[0]?.reacted ? reactionEmoji : "Like"}
           </button>
