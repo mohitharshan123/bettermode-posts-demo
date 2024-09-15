@@ -5,6 +5,9 @@ Welcome to the Bettermode Posts clone project! This repository contains a clone 
 
 You can check it out live at [Bettermode](https://bettermode-posts-demo.onrender.com)
 
+Please note that the server is hosted on a free tier, so it may occasionally be down. If you encounter any issues accessing the site, please inform me, and I can restart the server. Thank you for your understanding!
+
+
 ## Getting Started
 
 To get started with the project in developemt mode, follow these steps:
