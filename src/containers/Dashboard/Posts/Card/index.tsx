@@ -35,12 +35,13 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
           </div>
         </div>
         <div>
-          <h3
+          <button
             onClick={() => navigate(post.id)}
-            className="cursor-pointer text-xl font-semibold text-gray-800 dark:text-white mb-2"
+            className="cursor-pointer text-xl font-semibold text-gray-800 dark:text-white mb-2 bg-transparent border-none p-0"
+            aria-label={`Navigate to post ${post.title}`}
           >
             {post.title}
-          </h3>
+          </button>
           <p className="text-gray-600 dark:text-neutral-300 mb-4">
             {post.description}
           </p>
