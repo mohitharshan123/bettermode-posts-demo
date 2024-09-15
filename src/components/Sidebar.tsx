@@ -1,19 +1,19 @@
 import { useRef, useState } from "react";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
-
 import Logo from "assets/logo.svg";
 import { GoHome } from "react-icons/go";
 import { FaBars } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import useClickOutside from "hooks/useClickOutside";
 import { JWT_TOKEN_COOKIE_NAME, ROUTES } from "constants/index";
+import clsx from "clsx";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const navigate = useNavigate();
+  const location = useLocation();
+
   const sidebarRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -33,11 +33,13 @@ const Sidebar = () => {
     action: () => setIsOpen(false),
   });
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <>
       <div className="lg:hidden fixed top-4 left-4 z-30">
         <button
-          className="bg-gray-200 rounded-full dark:bg-neutral-700"
+          className="text-gray-500 dark:text-gray-200 dark:bg-neutral-700"
           onClick={toggleSidebar}
           aria-label="Open sidebar"
           ref={toggleButtonRef}
@@ -49,9 +51,14 @@ const Sidebar = () => {
       <div
         id="hs-application-sidebar"
         ref={sidebarRef}
-        className={`fixed inset-y-0 start-0 z-40 w-[260px] bg-white border-e border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 lg:block lg:w-[260px]`}
+        className={clsx(
+          "fixed inset-y-0 start-0 z-40 w-[260px] bg-white border-e border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 transform transition-transform duration-300 ease-in-out",
+          {
+            "translate-x-0": isOpen,
+            "-translate-x-full": !isOpen,
+            "lg:translate-x-0 lg:block lg:w-[260px]": true,
+          }
+        )}
         role="dialog"
         tabIndex={-1}
         aria-label="Sidebar"
@@ -67,13 +74,20 @@ const Sidebar = () => {
           </div>
 
           <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-            <nav
-              className="hs-accordion-group p-3 w-full flex flex-col flex-wrap flex-grow"
-            >
+            <nav className="hs-accordion-group p-3 w-full flex flex-col flex-wrap flex-grow">
               <ul className="flex flex-col space-y-1 flex-grow">
                 <li>
                   <a
-                    className="cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:bg-gray-700 dark:bg-neutral-700 dark:text-white"
+                    href="#"
+                    className={clsx(
+                      "cursor-pointer flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg focus:outline-none",
+                      {
+                        "bg-gray-200 text-gray-800 dark:bg-neutral-700 dark:text-white":
+                          isActive(ROUTES.posts.index),
+                        "text-gray-800 dark:text-white hover:bg-gray-100 focus:bg-gray-700 dark:hover:bg-neutral-700":
+                          !isActive(ROUTES.posts.index),
+                      }
+                    )}
                     onClick={() => navigate(ROUTES.posts.index)}
                   >
                     <GoHome size={20} />

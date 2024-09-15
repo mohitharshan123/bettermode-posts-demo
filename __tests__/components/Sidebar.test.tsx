@@ -7,6 +7,7 @@ const navigateMock = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   useNavigate: () => navigateMock,
+  useLocation: () => jest.fn(),
 }));
 
 const removeMock = jest.fn();
