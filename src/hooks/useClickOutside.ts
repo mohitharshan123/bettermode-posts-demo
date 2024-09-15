@@ -3,11 +3,11 @@ import { useEffect, RefObject } from "react";
 /**
  * Parameters for the useClickOutside hook.
  */
-interface UseClickOutsideParams {
+type UseClickOutsideParams = {
   popupRef: RefObject<HTMLElement>;
   buttonRef: RefObject<HTMLElement>;
   action: () => void;
-}
+};
 
 /**
  * Hook that triggers a callback when a click is detected outside of the specified elements.

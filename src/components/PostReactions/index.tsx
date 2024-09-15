@@ -15,9 +15,9 @@ import {
 import useReactions from "./useReactions";
 import { getAllowedReactions } from "./utils";
 
-interface PostReactionsProps {
+type PostReactionsProps = {
   post: Post;
-}
+};
 
 const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
   const popupRef = useRef<HTMLDivElement>(null);
