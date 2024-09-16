@@ -60,7 +60,7 @@ const DetailCard: React.FC = () => {
           </div>
         )}
 
-        {getAllowedReactions(data?.post)?.length && (
+        {getAllowedReactions(data?.post)?.length > 0 && (
           <PostReactions post={data?.post} />
         )}
       </div>
