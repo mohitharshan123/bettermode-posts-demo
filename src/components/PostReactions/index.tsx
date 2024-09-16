@@ -49,9 +49,9 @@ const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
             className={clsx(
               "text-white px-4 py-2 rounded-md flex flex-row items-center gap-2",
               {
-                "dark:bg-gray-700 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600":
+                "dark:bg-gray-700 bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600":
                   !post.reactions?.[0]?.reacted,
-                "dark:bg-gray-600 bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-500":
+                "dark:bg-gray-600 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500":
                   !!post.reactions?.[0]?.reacted,
               }
             )}
@@ -86,7 +86,7 @@ const PostReactions: React.FC<PostReactionsProps> = ({ post }) => {
             className="px-4 py-2 rounded-md bg-gray-300 text-white flex flex-row items-center gap-2 hover:bg-gray-300 dark:hover:bg-gray-500 dark:bg-neutral-800 dark:border-neutral-700"
           >
             <span>{post.reactions?.[0]?.reacted ? reactionEmoji : "Like"}</span>
-            <span className="text-sm text-gray-300">{reactionLabel}</span>
+            <span className="text-sm text-gray-800 dark:text-gray-300">{reactionLabel}</span>
           </button>
           {allowedReactions.length > 0 && (
             <div className="reaction-container">
