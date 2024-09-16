@@ -17,6 +17,8 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
 
   const content = post.fields?.find((field) => field.key === "content");
 
+  const cleanedHtmlContent = cleanHtmlContent(content?.value ?? "");
+
   return (
     <ErrorBoundary>
       <div className="relative flex flex-col bg-white border border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
@@ -58,11 +60,14 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
               "overflow-hidden relative"
             )}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: cleanHtmlContent(content?.value ?? ""),
-              }}
-            ></div>
+            {cleanedHtmlContent !== "null" && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: cleanedHtmlContent,
+                }}
+              ></div>
+            )}
+
             {!isExpanded && isOverflowing && (
               <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent"></div>
             )}

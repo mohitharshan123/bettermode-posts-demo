@@ -17,13 +17,17 @@ export const getAvailableReactions = (postTypeId: string): ReactionType[] => {
  */
 export const cleanHtmlContent = (html: string) => {
   if (!html) return "";
+
+  // Remove starting and ending double quotes if they exist
+  let cleanedHtml = html.replace(/^\"|\"$/g, "");
+
   // Remove escaped double quotes
-  let cleanedHtml = html.slice(1, -1);
+  cleanedHtml = cleanedHtml.replace(/\\&quot;/g, '"');
 
-  // Add a space after 'text-lg'
-  cleanedHtml = cleanedHtml.replace(/class=\\\"(.*?)\\\"/g, 'class="$1"');
+  // Remove additional escaping in text content
+  cleanedHtml = cleanedHtml.replace(/\\(?!&quot;)/g, "");
 
-  // Add a space after 'text-lg'
+  // Add a space after 'text-lg' in class attributes if necessary
   cleanedHtml = cleanedHtml.replace(
     /class="([^"]*?\btext-lg\b)(?!\s)([^"]*?)"/g,
     'class="$1 $2"'
@@ -31,5 +35,6 @@ export const cleanHtmlContent = (html: string) => {
 
   // Add a space between <li> elements
   cleanedHtml = cleanedHtml.replace(/<\/li>/g, "</li>\n");
+
   return cleanedHtml;
 };

@@ -16,6 +16,8 @@ const DetailCard: React.FC = () => {
 
   const tags = data?.post?.tags.map(({ title }) => title);
 
+  const cleanedHtmlContent = cleanHtmlContent(content?.value ?? "");
+
   return (
     <div>
       <div className="bg-white border m-4 border-gray-200 shadow-lg rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-800 p-6">
@@ -38,12 +40,14 @@ const DetailCard: React.FC = () => {
           {cleanHtmlContent(title?.value ?? "")}
         </h1>
 
-        <div
-          dangerouslySetInnerHTML={{
-            __html: cleanHtmlContent(content?.value ?? ""),
-          }}
-          className="text-gray-600 dark:text-white whitespace-pre-line"
-        ></div>
+        {cleanedHtmlContent !== "null" && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: cleanedHtmlContent,
+            }}
+            className="text-gray-600 dark:text-white whitespace-pre-line"
+          ></div>
+        )}
 
         {tags.length > 0 && (
           <div className="mt-4">
