@@ -1,6 +1,7 @@
 import { useState, RefObject } from "react";
 import {
   POST_TYPE_ALLOWED_REACTIONS_MAP,
+  REACTION_LABELS_MAP,
   REACTION_TYPE_TO_EMOJI,
 } from "constants/index";
 import { useReaction, useRemoveReaction } from "graphql/posts/usePosts";
@@ -63,6 +64,7 @@ const useReactions = ({
 
   const reactionKey = post.reactions?.[0]?.reaction as ReactionType;
   const reactionEmoji = REACTION_TYPE_TO_EMOJI[reactionKey] ?? "Like";
+  const reactionLabel = REACTION_LABELS_MAP[reactionKey];
 
   return {
     handleReaction,
@@ -70,6 +72,7 @@ const useReactions = ({
     isPopupOpen,
     setIsPopupOpen,
     isUpvoteType,
+    reactionLabel,
   };
 };
 

@@ -51,3 +51,15 @@ export const POST_TYPE_ALLOWED_REACTIONS_MAP: PostTypeAllowedReactionsMap = {
     ReactionType.OpenMouth,
   ],
 };
+
+export const REACTION_LABELS_MAP: Record<ReactionType, string> = {
+  [ReactionType.Upvote]: "Upvoted!",
+  [ReactionType.Fire]: "Hot!",
+  [ReactionType.Like]: "Liked!",
+  [ReactionType.Wow]: "Wow!",
+  [ReactionType.PlusOne]: "Plus One!",
+  [ReactionType.Heart]: "Hearted!",
+  [ReactionType.Tada]: "Celebrated!",
+  [ReactionType.Smile]: "Smiled!",
+  [ReactionType.OpenMouth]: "Surprised!",
+};
