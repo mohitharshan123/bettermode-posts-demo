@@ -1,8 +1,8 @@
 import {
   POST_TYPE_ALLOWED_REACTIONS_MAP,
   REACTION_TYPE_TO_EMOJI,
-} from "../../constants";
-import { Post, ReactionType } from "../../types/posts";
+} from "constants/index";
+import { Post, ReactionType } from "types/posts";
 
 export const getAllowedReactions = (post: Post) =>
   Object.values(ReactionType)

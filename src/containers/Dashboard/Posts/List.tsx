@@ -56,7 +56,6 @@ const PostsList = () => {
               ))}
             </div>
           }
-          scrollThreshold={1}
         >
           <div className="flex flex-col gap-10">
             {data?.posts?.nodes?.map((post: Post) => (
