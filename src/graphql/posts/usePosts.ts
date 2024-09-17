@@ -38,6 +38,7 @@ export const useReaction = (options?: MutationOptions) => {
 
   return useMutation(ADD_REACTION_MUTATION, {
     update(cache, { data }, reaction) {
+      if (data.addReaction?.status !== "succeeded") return;
       CacheUpdater.addReactionToCache({
         cache,
         data,
@@ -56,7 +57,9 @@ export const useRemoveReaction = (options?: MutationOptions) => {
   const { data: user } = useFetchAuthUser();
 
   return useMutation(REMOVE_REACTION_MUTATION, {
-    update(cache, _, reaction) {
+    update(cache, { data }, reaction) {
+      if (data.removeReaction?.status !== "succeeded") return;
+
       CacheUpdater.removeReactionFromCache({
         cache,
         reaction,
